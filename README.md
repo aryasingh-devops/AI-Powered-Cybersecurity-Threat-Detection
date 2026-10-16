@@ -5,11 +5,20 @@ pipeline over **synthetic network-flow telemetry**. It combines a Random Forest
 classifier with an Isolation Forest anomaly detector and writes reviewable CSV, JSON,
 and PNG outputs.
 
+## 📸 Output Screenshots
+<img width="1920" height="1020" alt="Screenshot 2026-10-15 223335" src="https://github.com/user-attachments/assets/17eb55a3-77ac-4b20-910e-30aacb38673e" />
+<img width="1920" height="1020" alt="Screenshot 2026-10-15 223342" src="https://github.com/user-attachments/assets/80f71623-ec23-4194-af4e-0a4ddc236f34" />
+<img width="1920" height="1020" alt="Screenshot 2026-10-15 223350" src="https://github.com/user-attachments/assets/f5896a25-4919-4586-b546-21c744155088" />
+<img width="1920" height="1020" alt="Screenshot 2026-10-15 223358" src="https://github.com/user-attachments/assets/df4f96b2-e5f5-43e6-a1a3-586dfd0d70d1" />
+
+## 🎥 Demo Video
+https://youtu.be/T9k8JtMeuNg?si=yGveSGiHD6AMxdrM
+
 > **Scope and safety:** This is an educational offline simulation, not a production
 > intrusion-detection system. It creates no network traffic and does not scan or attack
 > any system. Synthetic-data metrics are not evidence of real-world security efficacy.
 
-## Problem and industry relevance
+## ⚠️ Problem and industry relevance
 
 Security teams receive more network, endpoint, and identity events than they can
 manually inspect. Detection systems help prioritize suspicious events, surface unusual
@@ -20,7 +29,7 @@ telemetry, threat intelligence, rules, machine learning, analyst review, and res
 controls; this project demonstrates a small offline version of the detection and
 triage workflow.
 
-## What the demo does
+## 📝 What the demo does
 
 1. Generates benign and simulated DoS, brute-force, port-scan, and data-exfiltration
    flow records.
@@ -32,7 +41,7 @@ triage workflow.
 `attack_type` is not provided as a model feature. The model sees numeric flow features;
 the label is used only for training/evaluation and for the synthetic report context.
 
-## Architecture
+## 📃 Architecture
 
 ```text
 Synthetic telemetry / labeled CSV
@@ -47,7 +56,7 @@ See [docs/architecture.md](docs/architecture.md) and
 [docs/dataset-format.md](docs/dataset-format.md). The detailed beginner guide, build
 phases, and portfolio checklist are in [docs/project-guide.md](docs/project-guide.md).
 
-## Tech stack
+## 💻 Tech stack
 
 | Option | Stack | Difficulty | GPU |
 |---|---|---|---|
@@ -60,7 +69,7 @@ and it produces inspectable, reproducible artifacts suitable for a GitHub portfo
 Possible real public datasets include UNSW-NB15 and CICIDS; this repository uses
 synthetic data by default and does not redistribute third-party data.
 
-## Project layout
+## 🧩 Project layout
 
 ```text
 AI-Powered Cybersecurity Threat Detection/
@@ -78,7 +87,7 @@ AI-Powered Cybersecurity Threat Detection/
 └── README.md
 ```
 
-## Requirements and installation
+## 👩‍💻 Requirements and installation
 
 - Python 3.10–3.12 recommended
 - No GPU required
@@ -105,7 +114,7 @@ python -m pip install -r requirements.txt
 
 VS Code can recommend the Python and Pylance extensions after opening the project.
 
-## Run the full demo
+## 🎯 Run the full demo
 
 From the project root:
 
@@ -135,7 +144,7 @@ sample, and links to generated files.
 
 Model bundles use Joblib/pickle serialization. Load only model files you trust.
 
-## Run each stage separately
+## 📂 Run each stage separately
 
 ```bash
 python main.py generate --samples 5000 --seed 42
@@ -158,7 +167,7 @@ the transformation. Training and evaluating on the same dataset can produce opti
 metrics; the displayed classifier scores come from a held-out split, while the demo's
 alert report scores the generated rows for demonstration.
 
-## Evaluation and interpretation
+## 📚 Evaluation and interpretation
 
 The train command reports accuracy, precision, recall, F1, and a confusion matrix in
 `[[true negatives, false positives], [false negatives, true positives]]` order. In
@@ -172,7 +181,7 @@ repeated failed logins for brute force, many destination ports for scanning, and
 outbound transfer volume for exfiltration. This makes the exercise explainable, not a
 realistic substitute for validation on independent telemetry.
 
-## Tests
+## ⚙️ Tests
 
 ```bash
 python -m unittest discover -s tests -v
@@ -181,7 +190,7 @@ python -m unittest discover -s tests -v
 Tests verify deterministic simulation, data validation, model training/loading,
 detection output, and report creation.
 
-## Screenshots and portfolio proof
+## 📸 Screenshots and portfolio proof
 
 After a demo, open `outputs/detection_summary.png`, `outputs/alerts.csv`, and
 `outputs/metrics.json`. Capture screenshots of the terminal command and chart, and add
@@ -189,7 +198,7 @@ them under `images/` if you want them committed. Explain the dataset source, sch
 mapping, limitations, metrics, and one investigated false positive or false negative.
 Do not present simulated alerts or metrics as production results.
 
-## Learning outcomes
+## 📝 Learning outcomes
 
 - Building a deterministic dataset simulator and validating a data contract
 - Avoiding label leakage by excluding attack type from model features
@@ -198,7 +207,7 @@ Do not present simulated alerts or metrics as production results.
 - Turning model outputs into explainable, reviewable alerts and artifacts
 - Documenting dataset limits, reproducibility, and ethical boundaries
 
-## GitHub publishing checklist
+## ✨ GitHub publishing checklist
 
 1. Create an empty public GitHub repository with a clear description and Python topic.
 2. Check `git status`; do not add `.venv/`, private or licensed datasets, model bundles,
@@ -211,7 +220,7 @@ Do not present simulated alerts or metrics as production results.
 6. In applications, describe what you implemented and the synthetic-data limitation
   honestly; never claim production SOC deployment.
 
-## License and dataset note
+## 🔗 License and dataset note
 
 No third-party dataset is bundled. Check the license and acceptable-use terms for any
 dataset you download before using or publishing it. Add a project license only after
